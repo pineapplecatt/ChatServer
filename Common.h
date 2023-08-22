@@ -43,7 +43,7 @@ static void addfd(int epollfd, int fd, bool enable_et) {
     ev.events = EPOLLIN;
     if (enable_et)
         ev.events = EPOLLIN | EPOLLET;
-    epoll_ctl(epollfd, EPOLL_CTL_ADD, fd, &ev);
+    epoll_ctl(epollfd, EPOLL_CTL_ADD, fd, &ev);  // 在epoll实例上注册目标文件描述符fd
 
     fcntl(fd, F_SETFL, fcntl(fd, F_GETFD, 0) | O_NONBLOCK);
     cout << "fd added to epoll " << endl;
